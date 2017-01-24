@@ -13,7 +13,15 @@ const appComponent = {
     mounted: function() {
         this.getFriends();
 
-        setInterval(this.getFriends, 10000);
+        setInterval(
+            (function(scope) {
+                return function() {
+                    for (friend of scope.friends) {
+                        scope.getRecentTracks(friend.name);
+                    }
+                }
+            })(this), 10000
+        );
     },
     methods: {
         getFriends: function() {
