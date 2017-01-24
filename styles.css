@@ -10,6 +10,7 @@
     padding-left: 10px;
     font-size: 20px;
     vertical-align: middle;
+    line-height: 64px;
 }
 
 .username {
@@ -24,12 +25,31 @@
     line-height: 20px;
     text-align: right;
     vertical-align: middle;
-    margin-top: 10px;
+    margin-top: 15px;
     font-size: 20px;
+}
+
+.latest-track > i {
+    line-height: 20px;
+    margin: 0;
 }
 
 .artist {
     font-size: 15px;
     color: lightgrey;
+    font-style: italic;
+}
+
+.title {
+    font-weight: 500;
+}
+
+.title > i {
+    font-size: 16px;
+    vertical-align: middle;
+}
+
+.avatar > p {
+    padding: 0;
     font-style: italic;
 }

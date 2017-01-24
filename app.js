@@ -13,7 +13,7 @@ new Vue({
         getFriends: function() {
             var params = {
                 method: 'user.getfriends',
-                user: 'esalter1'
+                user: 'krist04'
             }
             var url = this.buildUrl(params);
             this.$http.get(url).then((response) => {
@@ -40,8 +40,11 @@ new Vue({
                     var trackObj = {
                         album: this.getItemValue(track.album),
                         artist: this.getItemValue(track.artist),
-                        date: this.getItemValue(track.date),
+                        image: this.getItemValue(track.image[1]),
                         name: track.name
+                    }
+                    if (track.date) {
+                        trackObj['date'] = this.getItemValue(track.date);
                     }
                     if (track["@attr"]) {
                         trackObj['nowplaying'] = track["@attr"].nowplaying || false
