@@ -1,6 +1,9 @@
 new Vue({
     el: "#app",
     data: {
-        welcome: "Welcome to Vue.js"
+        friends: [
+            {name: "krist04", description: "This is Kris' description"},
+            {name: "menello2", description: "This is Graham's description"},
+        ]
     }
 });
