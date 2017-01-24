@@ -11,7 +11,6 @@ const appComponent = {
         }
     },
     mounted: function() {
-        console.log('App component!')
         this.getFriends();
 
         setInterval(this.getFriends, 10000);
@@ -20,12 +19,16 @@ const appComponent = {
         getFriends: function() {
             var params = {
                 method: 'user.getfriends',
-                user: 'krist04'
+                user: this.$route.params.username
             }
             var url = this.buildUrl(params);
             this.$http.get(url).then((response) => {
+                if (response.body.error) {
+                    this.handleError(response.body.message);
+                    router.replace('/');
+                    return;
+                }
                 for (let friend of response.body.friends.user) {
-                    console.log(friend);
                     this.friends.push({
                         name: friend.name,
                         realname: friend.realname,
@@ -74,14 +77,30 @@ const appComponent = {
         httpGet: function(params) {
             var url = this.buildUrl(params);
             return this.$http.get(url);
+        },
+        handleError: function(errorMessage) {
+            alert(errorMessage);
         }
     }
 };
 
 const routes = [
     { 
-        path: '*',
+        path: '/:username',
         component: appComponent
+    },
+    {
+        path: '*',
+        component: {
+            template: `
+            <div>
+                <h3>You must provide a user ID in the URL</h3>
+                <p>
+                    i.e. http://[DOMAIN]/[YOUR_LAST.FM_USERNAME]
+                </p>
+            </div>
+        `
+        }
     }
 ]
 
