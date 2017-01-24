@@ -18,3 +18,18 @@
     color: lightgrey;
     font-style: italic;
 }
+
+.latest-track {
+    float: right;
+    line-height: 20px;
+    text-align: right;
+    vertical-align: middle;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.artist {
+    font-size: 15px;
+    color: lightgrey;
+    font-style: italic;
+}
