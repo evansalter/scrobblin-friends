@@ -7,7 +7,9 @@ new Vue({
         recenttracks: {}
     },
     mounted: function() {
-        this.getFriends()
+        this.getFriends();
+
+        setInterval(this.getFriends, 10000);
     },
     methods: {
         getFriends: function() {
