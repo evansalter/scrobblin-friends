@@ -1,12 +1,17 @@
 const baseUrl = 'http://ws.audioscrobbler.com/2.0/?api_key=90efff8e1fb86f79142c7ca8ad1d39a1&format=json';
 
-new Vue({
-    el: "#app",
-    data: {
-        friends: [],
-        recenttracks: {}
+const appComponent = {
+    template: `
+    <friend-list v-bind:friends="friends" v-bind:recenttracks="recenttracks"></friend-list>
+    `,
+    data: function() {
+        return {
+            friends: [],
+            recenttracks: {}
+        }
     },
     mounted: function() {
+        console.log('App component!')
         this.getFriends();
 
         setInterval(this.getFriends, 10000);
@@ -71,4 +76,21 @@ new Vue({
             return this.$http.get(url);
         }
     }
+};
+
+const routes = [
+    { 
+        path: '*',
+        component: appComponent
+    }
+]
+
+const router = new VueRouter({
+    routes,
+    mode: 'history'
 });
+
+new Vue({
+    el: "#app",
+    router
+}).$mount(router);
