@@ -1,3 +1,5 @@
+
+
 Vue.component('navbar', {
     template: `
     <nav>
