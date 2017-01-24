@@ -22,7 +22,7 @@ Vue.component('user-selection', {
     methods: {
         formSubmitted (){
             if (this.username) {
-                router.replace('/' + this.username)
+                window.location = '/' + this.username;
             } else {
                 this.error = 'You must enter a valid Last.fm username';
             }

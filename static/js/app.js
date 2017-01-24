@@ -1,4 +1,4 @@
-const baseUrl = 'http://ws.audioscrobbler.com/2.0/?api_key=90efff8e1fb86f79142c7ca8ad1d39a1&format=json';
+const baseUrl = 'https://ws.audioscrobbler.com/2.0/?api_key=90efff8e1fb86f79142c7ca8ad1d39a1&format=json';
 
 const appComponent = {
     template: `

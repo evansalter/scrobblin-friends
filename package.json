@@ -8,5 +8,8 @@
     "start": "node server.js"
   },
   "author": "Evan Salter",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
 }
