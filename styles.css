@@ -1,0 +1,20 @@
+.collapsible-header {
+    padding: 15px;
+}
+
+.profile-image {
+    vertical-align: middle;
+}
+
+.name {
+    padding-left: 10px;
+    font-size: 20px;
+    vertical-align: middle;
+}
+
+.username {
+    padding-left: 10px;
+    vertical-align: middle;
+    color: lightgrey;
+    font-style: italic;
+}

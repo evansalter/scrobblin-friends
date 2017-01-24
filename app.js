@@ -20,7 +20,8 @@ new Vue({
                     console.log(friend);
                     this.friends.push({
                         name: friend.name,
-                        realName: friend.realName
+                        realname: friend.realname,
+                        imageUrl: friend.image[1]['#text']
                     });
                 }
             });
