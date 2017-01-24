@@ -57,3 +57,23 @@
     padding: 0;
     font-style: italic;
 }
+
+.error-message {
+    padding: 25px;
+    background-color: #b71c1c;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    color: white;
+    font-size: 25px;
+}
+
+.error-message > i {
+    vertical-align: middle;
+    font-size: 50px;
+    margin-right: 15px;
+}
+
+.top-margin {
+    margin-top: 50px;
+}

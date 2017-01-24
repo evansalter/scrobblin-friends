@@ -93,13 +93,8 @@ const routes = [
         path: '*',
         component: {
             template: `
-            <div>
-                <h3>You must provide a user ID in the URL</h3>
-                <p>
-                    i.e. http://[DOMAIN]/[YOUR_LAST.FM_USERNAME]
-                </p>
-            </div>
-        `
+            <user-selection></user-selection>
+            `
         }
     }
 ]
