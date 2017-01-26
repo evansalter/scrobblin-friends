@@ -7,6 +7,6 @@ before_install:
   -d
 deploy:
   provider: gae
-  keyfile: scrobblin-friends-a7d74d360459.json
+  keyfile: scrobblin-friends-44af82b28a45.json
   project: scrobblin-friends
   default: true
