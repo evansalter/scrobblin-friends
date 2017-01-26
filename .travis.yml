@@ -1,0 +1,8 @@
+language: node_js
+node_js:
+  - "6"
+deploy:
+  provider: gae
+  keyfile: "scrobblin-friends-a7d74d360459.json.enc"
+  project: "scrobblin-friends"
+  default: true
