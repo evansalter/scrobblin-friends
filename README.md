@@ -1,4 +1,4 @@
-# Scrobbling With Friends
+# Scrobblin' With Friends
 
 A simple Vue.js app to see what tracks your friends are scrobbling on Last.fm in real time.  It is currently deployed [here](https://scrobblin-friends-zvngsdxbcf.now.sh/)
 
