@@ -69,6 +69,9 @@ const appComponent = {
                     }
                     tracks.push(trackObj);
                 }
+                if (tracks.length < 1) {
+                    tracks = null;
+                }
                 Vue.set(this.recenttracks, username, tracks);
             })
         },
