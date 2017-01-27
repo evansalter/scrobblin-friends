@@ -3,7 +3,7 @@ Vue.component('friend-list', {
     template: `
     <div>
         <ul class="collapsible popout" data-collapsible="accordion">
-            <li v-for="friend in friends">
+            <li v-for="friend in friends" :key="friend.name">
                 <div class="collapsible-header">
                     <div class="friend-row">
                         <img v-bind:src="friend.imageUrl" class="profile-image circle">

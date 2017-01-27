@@ -46,6 +46,21 @@ const appComponent = {
                 }
             });
         },
+        isNowPlaying: function(friend) {
+            var recentTracks = this.recenttracks[friend.name];
+            if (recentTracks && recentTracks.length > 0) {
+                if (recentTracks[0].nowplaying) {
+                    return true;
+                }
+            }
+            return false;
+        },
+        getName: function(friend) {
+            if (friend.realname) {
+                return friend.realname;
+            }
+            return friend.name;
+        },
         getRecentTracks: function(username) {
             var params = {
                 method: 'user.getRecentTracks',
@@ -73,6 +88,16 @@ const appComponent = {
                     tracks = null;
                 }
                 Vue.set(this.recenttracks, username, tracks);
+                this.friends = this.friends.sort(function(a, b) {
+                    var aNowPlaying = this.isNowPlaying(a);
+                    var bNowPlaying = this.isNowPlaying(b);
+                    var aName = this.getName(a).toLowerCase();
+                    var bName = this.getName(b).toLowerCase();
+                    
+                    if (aNowPlaying === bNowPlaying) return aName > bName ? 1 : aName < bName ? -1 : 0;
+                    if (aNowPlaying && !bNowPlaying) return -1;
+                    if (bNowPlaying && !aNowPlaying) return 1;
+                }.bind(this));
             })
         },
         getItemValue: function(item) {
