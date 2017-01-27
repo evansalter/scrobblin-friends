@@ -35,23 +35,38 @@ main {
 }
 
 .latest-track {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     float: right;
     line-height: 20px;
     text-align: right;
     vertical-align: middle;
-    margin-top: 15px;
     font-size: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-left: 25px;
+}
+
+.collapsible-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .latest-track > i {
     line-height: 20px;
     margin: 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .artist {
     font-size: 15px;
     color: lightgrey;
     font-style: italic;
+    margin-right: 2px;
 }
 
 .title {
@@ -96,4 +111,15 @@ main {
 
 #github-footer:hover {
     color: white;
+}
+
+.friend-row {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.latest-track > span > .play-arrow {
+    line-height: inherit;
+    margin-right: 0;
 }

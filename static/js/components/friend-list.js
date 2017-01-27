@@ -4,12 +4,14 @@ Vue.component('friend-list', {
     <ul class="collapsible popout" data-collapsible="accordion">
         <li v-for="friend in friends">
             <div class="collapsible-header">
-                <img v-bind:src="friend.imageUrl" class="profile-image circle">
-                <span class="name">{{ friend.realname ? friend.realname : friend.name }}</span>
-                <span class="username" v-if="friend.realname">{{ friend.name }}</span>
+                <div class="friend-row">
+                    <img v-bind:src="friend.imageUrl" class="profile-image circle">
+                    <span class="name">{{ friend.realname ? friend.realname : friend.name }}</span>
+                    <span class="username" v-if="friend.realname">{{ friend.name }}</span>
+                </div>
                 <span v-if="recenttracks[friend.name]" class="latest-track">
-                    <i v-if="recenttracks[friend.name][0].nowplaying" class="material-icons">play_arrow</i>
-                    {{ recenttracks[friend.name][0].name }}<br>
+                    <span><i class="play-arrow material-icons">play_arrow</i>
+                    {{ recenttracks[friend.name][0].name }}</span>
                     <span class="artist">{{ recenttracks[friend.name][0].artist }}</span>
                 </span>
             </div>
