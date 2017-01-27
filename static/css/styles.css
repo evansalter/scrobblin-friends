@@ -6,6 +6,16 @@
     padding: 15px;
 }
 
+#app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+main {
+    flex-grow: 1;
+}
+
 .profile-image {
     vertical-align: middle;
 }
@@ -76,4 +86,14 @@
 
 .top-margin {
     margin-top: 50px;
+}
+
+#github-footer {
+    font-size: 35px;
+    margin-top: 50%;
+    transform: translate(0, -25%);
+}
+
+#github-footer:hover {
+    color: white;
 }
