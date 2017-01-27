@@ -123,3 +123,8 @@ main {
     line-height: inherit;
     margin-right: 0;
 }
+
+.jumbo-text {
+    text-align: center;
+    font-size: 25px;
+}
