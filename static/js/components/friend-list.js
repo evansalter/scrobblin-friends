@@ -10,8 +10,10 @@ Vue.component('friend-list', {
                     <span class="username" v-if="friend.realname">{{ friend.name }}</span>
                 </div>
                 <span v-if="recenttracks[friend.name]" class="latest-track">
-                    <span><i class="play-arrow material-icons">play_arrow</i>
-                    {{ recenttracks[friend.name][0].name }}</span>
+                    <span>
+                        <i v-if="recenttracks[friend.name][0].nowplaying" class="play-arrow material-icons">play_arrow</i>
+                        {{ recenttracks[friend.name][0].name }}
+                    </span>
                     <span class="artist">{{ recenttracks[friend.name][0].artist }}</span>
                 </span>
             </div>
