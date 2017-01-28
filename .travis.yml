@@ -1,6 +1,6 @@
-language: node_js
-node_js:
-- '6'
+language: python
+python:
+  - "2.7"
 before_install:
 - openssl aes-256-cbc -K $encrypted_3079684959d0_key -iv $encrypted_3079684959d0_iv
   -in scrobblin-friends-44af82b28a45.json.enc -out scrobblin-friends-44af82b28a45.json
