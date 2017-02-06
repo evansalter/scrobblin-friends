@@ -1,7 +1,7 @@
 Vue.component('last-fm-user', {
     props: ['user', 'tracks'],
     template: `
-    <div>
+    <li>
         <div class="collapsible-header">
             <div class="friend-row">
                 <img :src="user.imageUrl" class="profile-image circle">
@@ -19,5 +19,5 @@ Vue.component('last-fm-user', {
         <div class="collapsible-body">
             <track-list :tracks="tracks"></track-list>
         </div>
-    </div>`
+    </li>`
 });

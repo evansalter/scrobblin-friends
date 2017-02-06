@@ -24,9 +24,7 @@ Vue.component('you', {
     },
     template: `
     <ul class="collapsible popout" data-collapsible="accordion">
-        <li>
-            <last-fm-user :user="yourinfo" :tracks="tracks"></last-fm-user>
-        </li>
+        <last-fm-user :user="yourinfo" :tracks="tracks"></last-fm-user>
     </ul>
     `
 });
