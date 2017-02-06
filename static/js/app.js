@@ -1,26 +1,29 @@
-const baseUrl = 'https://ws.audioscrobbler.com/2.0/?api_key=90efff8e1fb86f79142c7ca8ad1d39a1&format=json';
-
 const appComponent = {
     template: `
-    <friend-list v-bind:friends="friends" v-bind:recenttracks="recenttracks"></friend-list>
+    <div>
+        <you :yourname="yourname"></you>
+        <friend-list :friends="friends" :recenttracks="recenttracks"></friend-list>
+    </div>
     `,
     data: function() {
         return {
             friends: [],
-            recenttracks: {}
+            recenttracks: {},
+            yourname: this.$route.params.username
         }
     },
     mounted: function() {
         this.getFriends();
 
+        let scope = this;
         setInterval(
-            (function(scope) {
+            function(scope) {
                 return function() {
                     for (friend of scope.friends) {
-                        scope.getRecentTracks(friend.name);
+                        getRecentTracks(friend.name, scope.recentTracksCallback, scope);
                     }
                 }
-            })(this), 10000
+            }, 10000
         );
     },
     methods: {
@@ -29,8 +32,8 @@ const appComponent = {
                 method: 'user.getfriends',
                 user: this.$route.params.username
             }
-            var url = this.buildUrl(params);
-            this.$http.get(url).then((response) => {
+
+            httpGet(params, this).then((response) => {
                 if (response.body.error) {
                     this.handleError(response.body.message);
                     router.replace('/');
@@ -42,8 +45,20 @@ const appComponent = {
                         realname: friend.realname,
                         imageUrl: friend.image[1]['#text']
                     });
-                    this.getRecentTracks(friend.name);
+                    getRecentTracks(friend.name, this.recentTracksCallback, this);
                 }
+            });
+        },
+        recentTracksCallback: function(username, tracks) {
+            Vue.set(this.recenttracks, username, tracks);
+            this.friends = this.friends.sort((a, b) => {
+                var aNowPlaying = this.isNowPlaying(a);
+                var bNowPlaying = this.isNowPlaying(b);
+                var aName = this.getName(a).toLowerCase();
+                var bName = this.getName(b).toLowerCase();
+                if (aNowPlaying === bNowPlaying) return aName > bName ? 1 : aName < bName ? -1 : 0;
+                if (aNowPlaying && !bNowPlaying) return -1;
+                if (bNowPlaying && !aNowPlaying) return 1;
             });
         },
         isNowPlaying: function(friend) {
@@ -60,59 +75,6 @@ const appComponent = {
                 return friend.realname;
             }
             return friend.name;
-        },
-        getRecentTracks: function(username) {
-            var params = {
-                method: 'user.getRecentTracks',
-                user: username,
-                limit: 4
-            }
-            this.httpGet(params).then(response => {
-                var tracks = [];
-                for (let track of response.body.recenttracks.track) {
-                    var trackObj = {
-                        album: this.getItemValue(track.album),
-                        artist: this.getItemValue(track.artist),
-                        image: this.getItemValue(track.image[1]),
-                        name: track.name
-                    }
-                    if (track.date) {
-                        trackObj['date'] = this.getItemValue(track.date);
-                    }
-                    if (track["@attr"]) {
-                        trackObj['nowplaying'] = track["@attr"].nowplaying || false
-                    }
-                    tracks.push(trackObj);
-                }
-                if (tracks.length < 1) {
-                    tracks = null;
-                }
-                Vue.set(this.recenttracks, username, tracks);
-                this.friends = this.friends.sort(function(a, b) {
-                    var aNowPlaying = this.isNowPlaying(a);
-                    var bNowPlaying = this.isNowPlaying(b);
-                    var aName = this.getName(a).toLowerCase();
-                    var bName = this.getName(b).toLowerCase();
-                    
-                    if (aNowPlaying === bNowPlaying) return aName > bName ? 1 : aName < bName ? -1 : 0;
-                    if (aNowPlaying && !bNowPlaying) return -1;
-                    if (bNowPlaying && !aNowPlaying) return 1;
-                }.bind(this));
-            })
-        },
-        getItemValue: function(item) {
-            return item['#text']
-        },
-        buildUrl: function(params) {
-            var queryString = '';
-            for (var param in params) {
-                queryString += '&' + encodeURIComponent(param) + '=' + encodeURIComponent(params[param]);
-            }
-            return baseUrl + queryString;
-        },
-        httpGet: function(params) {
-            var url = this.buildUrl(params);
-            return this.$http.get(url);
         },
         handleError: function(errorMessage) {
             alert(errorMessage);
