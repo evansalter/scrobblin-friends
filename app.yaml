@@ -7,6 +7,11 @@ handlers:
   static_dir: static
   secure: always
 
+- url: /favicon\.ico
+  static_files: static/images/favicon.ico
+  upload: static/img/favicon\.ico
+  secure: always
+
 - url: .*
   static_files: index.html
   upload: index.html
