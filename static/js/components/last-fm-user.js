@@ -10,7 +10,7 @@ Vue.component('last-fm-user', {
             </div>
             <span v-if="tracks && tracks.length > 0" class="latest-track">
                 <span>
-                    <i v-if="tracks[0].nowplaying" class="play-arrow material-icons">play_arrow</i>
+                    <now-playing v-if="tracks[0].nowplaying"></now-playing>
                     {{ tracks[0].name }}
                 </span>
                 <span class="artist">{{ tracks[0].artist }}</span>

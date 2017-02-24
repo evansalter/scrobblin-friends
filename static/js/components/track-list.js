@@ -5,7 +5,7 @@ Vue.component('track-list', {
         <li v-for="track of tracks" class="collection-item avatar">
             <img v-if="track.image" v-bind:src="track.image" class="circle">
             <span class="title">
-                <i v-if="track.nowplaying" class="material-icons">play_arrow</i>
+                <now-playing v-if="track.nowplaying"></now-playing>
                 {{ track.name }}
             </span>
             <p>
