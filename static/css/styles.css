@@ -25,6 +25,7 @@ main {
     font-size: 20px;
     vertical-align: middle;
     line-height: 64px;
+    white-space: nowrap;
 }
 
 .username {
