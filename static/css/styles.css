@@ -131,19 +131,19 @@ main {
 }
 
 @keyframes bar1 {
-  0% {y: 0%}
-  50% {y: 70%}
-  100% {y: 0%}
+  0% {transform: translate(0, 70%)}
+  50% {transform: translate(0, 0%)}
+  100% {transform: translate(0, 70%)}
 }
 @keyframes bar2 {
-  0% {y: 50%}
-  50% {y: 90%}
-  100% {y: 50%}
+  0% {transform: translate(7px, 90%)}
+  50% {transform: translate(7px, 50%)}
+  100% {transform: translate(7px, 90%)}
 }
 @keyframes bar3 {
-  0% {y: 25%}
-  50% {y: 75%}
-  100% {y: 25%}
+  0% {transform: translate(14px, 75%)}
+  50% {transform: translate(14px, 25%)}
+  100% {transform: translate(14px, 75%)}
 }
 
 .bar {
@@ -154,10 +154,8 @@ main {
   animation: bar1 1.33s infinite;
 }
 .bar:nth-child(2) {
-  transform: translateX(7px);
   animation: bar2 1s infinite;
 }
 .bar:nth-child(3) {
-  transform: translateX(14px);
   animation: bar3 1.66s infinite;
 }
